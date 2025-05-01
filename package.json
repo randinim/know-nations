@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "*"
+  },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.2.3",
     "@radix-ui/react-collapsible": "^1.1.8",
@@ -24,7 +27,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3",
-    "rollup": "^4.40.1",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "vaul": "^1.1.2",
