@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,6 +33,7 @@
     --ring: 201 94% 40%;
 
     --radius: 0.5rem;
+    --shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .dark {
@@ -64,6 +64,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    --shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -73,22 +74,25 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-primary;
+  }
+
+  a {
+    @apply text-primary underline hover:text-primary-foreground transition-colors;
   }
 }
 
 /* Custom styles */
 .country-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8;
 }
 
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.country-card {
+  @apply bg-card shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl;
 }
 
 .flag-container {
@@ -101,5 +105,34 @@
 }
 
 .country-card:hover .flag-image {
-  transform: scale(1.05);
+  transform: scale(1.1);
+}
+
+.country-card-content {
+  @apply p-4;
+}
+
+.country-name {
+  @apply text-lg font-semibold text-foreground;
+}
+
+.country-info {
+  @apply text-sm text-muted-foreground mt-2;
+}
+
+.button {
+  @apply inline-block px-4 py-2 bg-primary text-primary-foreground rounded-lg shadow-md hover:bg-primary-foreground hover:text-primary transition-all;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
