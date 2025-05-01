@@ -3,7 +3,7 @@ import { getUserSession } from "./auth"
 
 // Create an Axios instance with a configurable base URL
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000"
+  baseURL: "https://uptight-jori-randinim-b299a63f.koyeb.app"
 })
 
 // Add a request interceptor to include the Authorization header
