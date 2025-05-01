@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
@@ -8,6 +7,8 @@ import Index from "./pages/Index";
 import CountryDetail from "./pages/CountryDetail";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "./components/ui/toaster";
+import AuthForm from "./pages/Auth/AuthForm";
+import { AuthProvider } from "./context/auth-context";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -20,11 +21,14 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/country/:code" element={<CountryDetail />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AuthProvider>
+              <Routes>
+                <Route path="/login" element={<AuthForm />} />
+                <Route path="/country/:code" element={<CountryDetail />} />
+                <Route path="/" element={<Index />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AuthProvider>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
