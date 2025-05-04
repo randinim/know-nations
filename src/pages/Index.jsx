@@ -8,6 +8,8 @@ import CountryList from "../components/CountryList"
 import AdvancedFilter from "../components/AdvancedFilter"
 import { Skeleton } from "../components/ui/skeleton"
 import { getAllCountries, getCountriesByName, getCountriesByRegion } from "../services/api"
+import Header from "../components/Header";
+
 const Index = () => {
   const [countries, setCountries] = useState([])
   const [filteredCountries, setFilteredCountries] = useState([])
@@ -159,44 +161,47 @@ const Index = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-primary">
-        Country Explorer
-      </h1>
+    <>
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-primary">
+          Country Explorer
+        </h1>
 
-      <div className="flex flex-col md:flex-row justify-between gap-4 mb-8">
-        <div className="flex flex-col gap-4 md:w-1/2">
-          <SearchBar onSearch={handleSearch} />
-          <AdvancedFilter onFilterChange={handleAdvancedFilters} />
+        <div className="flex flex-col md:flex-row justify-between gap-4 mb-8">
+          <div className="flex flex-col gap-4 md:w-1/2">
+            <SearchBar onSearch={handleSearch} />
+            <AdvancedFilter onFilterChange={handleAdvancedFilters} />
+          </div>
+          <RegionFilter
+            regions={regions}
+            selectedRegion={selectedRegion}
+            onRegionChange={handleRegionChange}
+          />
         </div>
-        <RegionFilter
-          regions={regions}
-          selectedRegion={selectedRegion}
-          onRegionChange={handleRegionChange}
-        />
-      </div>
 
-      {loading ? (
-        <div className="country-grid">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="flex flex-col gap-2">
-              <Skeleton className="h-48 w-full rounded-t-lg" />
-              <div className="px-6 py-6">
-                <Skeleton className="h-6 w-3/4 mb-4" />
-                <Skeleton className="h-4 w-1/2 mb-2" />
-                <Skeleton className="h-4 w-2/3 mb-2" />
-                <Skeleton className="h-4 w-1/3" />
+        {loading ? (
+          <div className="country-grid">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="flex flex-col gap-2">
+                <Skeleton className="h-48 w-full rounded-t-lg" />
+                <div className="px-6 py-6">
+                  <Skeleton className="h-6 w-3/4 mb-4" />
+                  <Skeleton className="h-4 w-1/2 mb-2" />
+                  <Skeleton className="h-4 w-2/3 mb-2" />
+                  <Skeleton className="h-4 w-1/3" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <CountryList
-          countries={filteredCountries}
-          onCountryClick={handleCountryClick}
-        />
-      )}
-    </div>
+            ))}
+          </div>
+        ) : (
+          <CountryList
+            countries={filteredCountries}
+            onCountryClick={handleCountryClick}
+          />
+        )}
+      </div>
+    </>
   )
 }
 

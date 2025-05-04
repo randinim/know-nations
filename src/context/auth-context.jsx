@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../middleware/axioinstance";
-import { getUserSession, setUserSession } from "../middleware/auth";
+import { getUserSession, removeUserSession, setUserSession } from "../middleware/auth";
 
 // Handle the authentication response
 const handleAuthResponse = (response) => {
@@ -18,7 +18,7 @@ const AuthContext = createContext(undefined);
 
 // AuthProvider Component
 export function AuthProvider({ children }) {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     const getUser = async () => {
@@ -47,7 +47,6 @@ export function AuthProvider({ children }) {
             return;
           }
           {
-            console.log("User data found");
             setUser(session);
             setUserSession(session);
             navigate("/");
@@ -83,8 +82,8 @@ export function AuthProvider({ children }) {
         return { success: false, error: errorMessage };
       }
       setUser(user);
-        setUserSession(user);
-        navigate("/"); // Redirect to home after login
+      setUserSession(user);
+      navigate("/"); // Redirect to home after login
       return { success: true };
     } catch (error) {
       return {
@@ -118,7 +117,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user: null, login, logout, register }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

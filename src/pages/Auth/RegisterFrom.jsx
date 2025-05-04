@@ -213,7 +213,7 @@ const RegisterForm = ({ onSuccess }) => {
 
       <Button
         type="submit"
-        className="w-full bg-auth-primary hover:bg-auth-secondary"
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white"
         disabled={isLoading}
       >
         {isLoading ? "Creating account..." : "Create account"}
