@@ -104,7 +104,6 @@ export function AuthProvider({ children }) {
         password: btoa(password),
         name: name,
         profilePicture: profilePicture,
-        email: email,
       });
 
       const user = handleAuthResponse(response);

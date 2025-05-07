@@ -34,9 +34,7 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center p-4 bg-gray-800 text-white shadow-md">
-      <Link to="/" className="text-xl font-bold">
-        Country Explorer
-      </Link>
+<div>Welcome</div>
       <div className="relative" ref={dropdownRef}>
         {user && (
           <div
